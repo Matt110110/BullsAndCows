@@ -98,6 +98,7 @@ namespace BullCowCSharp
             {
                 IsGameWon = true;
             }
+            SubmitGuess++;
             return Tuple.Create(bull, cow);
         }
 
