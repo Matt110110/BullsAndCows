@@ -12,11 +12,13 @@ let wordColl = ["brick"; "blind"; "simple"; "sample"; "world"; "birth" ] // Alwa
 let mutable private isGameWon = false
 let mutable private currentTry = 1
 
+let IsGameOver() = isGameWon
 //To access an element in F# we have to go for X.[] instead of X[]
 // Use of Linq is not necessary but since I am opening it anyway so using it. Might change it later.
 let private secretWord = wordColl.ElementAt(Random().Next(0, wordColl.Length))
 let GetWordlength() = secretWord.Length
 let maxTries = GetWordlength() - 1
+let GetCurrentTry() = currentTry
 let Reset() =
     isGameWon <- false
     // TODO : Add a function to generate a new secret word
