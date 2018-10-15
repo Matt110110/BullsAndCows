@@ -1,5 +1,8 @@
-﻿// Learn more about F# at http://fsharp.org
-// See the 'F# Tutorial' project for more help.
+﻿(*
+Author: Matruprasad Chand
+Date: 15/10/2018
+This is the recreation of the C++ Bull Cow game.	
+*)
 open System
 open BullsAndCows
 
@@ -29,14 +32,11 @@ let GetStatus() =
     guess
 
 let PrintStatus guess =
-    let count = SubmitGuess(guess)
-    let a = fst(count)
-    let b = snd(count)
+    let a, b = SubmitGuess(guess)
     printfn "Bulls: %d \t Cows: %d" a b
 
 let PrintGameSummary() =
-    let tries = GetCurrentTry()
-    if IsGameOver() then printfn "Congratulations. You have beaten the game. You only took %d tries." tries
+    if IsGameOver() then Console.WriteLine("Congratulations. You have beaten the game. You only took {0} tries.", GetCurrentTry() - 1)
     else printfn "Sorry you failed to beat the game. Better luck next time."
 
 let PlayGame() =

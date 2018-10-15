@@ -1,4 +1,12 @@
-﻿module BullsAndCows
+﻿(*
+Author: Matruprasad Chand
+Date: 15/10/2018
+Info:
+	* This is a console based word guessing game
+	* The User will be provided with a few clues and has to guess the word correctly within the given number of tries.
+	* For each letter in the right place, the user gets a bull and for each correct character placed in the wrong place the user gets a cow.
+*)
+module BullsAndCows
 
 open System
 open System.Linq
@@ -24,7 +32,7 @@ let Reset() =
     secretWord <- wordColl.ElementAt(Random().Next(0, wordColl.Length))
     currentTry <- 1
 
-    // A completely different approach to the isIsogram problem. Here I simply remove the duplicate elements from a string and compare the lengths. 
+// A completely different approach to the isIsogram problem. Here I simply remove the duplicate elements from a string and compare the lengths. 
 let isIsogram(guess:string)  =
     let uniq = guess |> Seq.distinct 
     if guess.Length = uniq.Count() then true
