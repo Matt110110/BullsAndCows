@@ -5,10 +5,6 @@ open BullsAndCows
 
 let n = GetWordlength()
 
-let doWhile() =
-    printf "Do you want to continue? (Y/N)"
-    Console.ReadLine() = "y"
-
 let PrintIntro() = 
     Console.Clear()
     Reset()
@@ -25,7 +21,10 @@ let PrintIntro() =
 
 let GetStatus() =
     let x = GetCurrentTry()
-    printfn "Enter your %d try" x
+    if x = 1 then printfn "Enter your %dst try" x
+    elif x = 2 then printfn "Enter your %dnd try" x
+    elif x = 3 then printfn "Enter your %drd try" x
+    else printfn "Enter your %dth try" x
     let guess = Console.ReadLine()
     guess
 
@@ -36,7 +35,8 @@ let PrintStatus guess =
     printfn "Bulls: %d \t Cows: %d" a b
 
 let PrintGameSummary() =
-    if IsGameOver() then printfn "Congratulations. You have beaten the game."
+    let tries = GetCurrentTry()
+    if IsGameOver() then printfn "Congratulations. You have beaten the game. You only took %d tries." tries
     else printfn "Sorry you failed to beat the game. Better luck next time."
 
 let PlayGame() =
@@ -53,6 +53,14 @@ let PlayGame() =
             | GuessStatus.Not_Isogram -> printfn "Please enter an ISOGRAM (Word with no repeating letters.)"
     PrintGameSummary()
 
+let doWhile() =
+    PrintIntro()
+    PlayGame()
+    printf "Do you want to continue? (Y/N)"
+    let choice = Console.ReadLine()
+    if choice.[0] = 'y' then true
+    elif choice.[0] = 'Y' then true
+    else false
 
 [<EntryPoint>]
 let main argv = 

@@ -15,13 +15,13 @@ let mutable private currentTry = 1
 let IsGameOver() = isGameWon
 //To access an element in F# we have to go for X.[] instead of X[]
 // Use of Linq is not necessary but since I am opening it anyway so using it. Might change it later.
-let private secretWord = wordColl.ElementAt(Random().Next(0, wordColl.Length))
+let mutable private secretWord = wordColl.ElementAt(Random().Next(0, wordColl.Length))
 let GetWordlength() = secretWord.Length
 let maxTries = GetWordlength() - 1
 let GetCurrentTry() = currentTry
 let Reset() =
     isGameWon <- false
-    // TODO : Add a function to generate a new secret word
+    secretWord <- wordColl.ElementAt(Random().Next(0, wordColl.Length))
     currentTry <- 1
 
     // A completely different approach to the isIsogram problem. Here I simply remove the duplicate elements from a string and compare the lengths. 
@@ -33,12 +33,13 @@ let isIsogram(guess:string)  =
 let SubmitGuess(guess:string) =
     let mutable bull = 0
     let mutable cow = 0
-    for i = 0 to guess.Length do
-        for j = 0 to secretWord.Length do
+    for i = 0 to guess.Length - 1 do
+        for j = 0 to secretWord.Length - 1 do
             if guess.[i] = secretWord.[j] then 
                 if i = j then bull <- bull + 1
                 else cow <- cow + 1
     if bull = GetWordlength() then isGameWon <- true
+    currentTry <- currentTry + 1
     (bull, cow)
 
 let IsValidGuess guess =
