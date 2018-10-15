@@ -5,15 +5,14 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>81c10c86-ef4e-4910-9131-9d77272ec192</ProjectGuid>
+    <ProjectGuid>e712f8f0-325d-4107-9524-d82d7bc5600f</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>TutorialFSharp</RootNamespace>
-    <AssemblyName>TutorialFSharp</AssemblyName>
+    <RootNamespace>BullCowFSharp</RootNamespace>
+    <AssemblyName>BullCowFSharp</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <UseStandardResourceNames>true</UseStandardResourceNames>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Name>TutorialFSharp</Name>
+    <Name>BullCowFSharp</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,8 +45,12 @@
   </PropertyGroup>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
-    <Compile Include="Tutorial.fsx" />
+    <Compile Include="AssemblyInfo.fs" />
+    <None Include="App.config" />
     <Content Include="packages.config" />
+    <None Include="scratchpad.fsx" />
+    <Compile Include="BullsAndCows.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
@@ -57,11 +60,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.ValueTuple">
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
