@@ -1,6 +1,30 @@
 ﻿module BullsAndCows
 
+open System
+open System.Linq
+
 type GuessStatus =
     | OK = 0
     | Not_Isogram = 1
     | Invalid_Length = 2
+
+let wordColl = ["brick"; "blind"; "simple"; "sample"; "world"; "birth" ] // Always use semi-colon as separators. If comma is used there wont be any compiler errors but the code will not work.
+let mutable private isGameWon = false
+let mutable private currentTry = 1
+
+//To access an element in F# we have to go for X.[] instead of X[]
+// Use of Linq is not necessary but since I am opening it anyway so using it. Might change it later.
+let private secretWord = wordColl.ElementAt(Random().Next(0, wordColl.Length))
+let getWordlength() = secretWord.Length
+let maxTries = getWordlength() - 1
+let Reset() =
+    isGameWon <- false
+    // TODO : Add a function to generate a new secret word
+    currentTry <- 1
+
+    // A completely different approach to the isIsogram problem. Here I simply remove the duplicate elements from a string and compare the lengths. 
+let isIsogram(guess:string)  =
+    let uniq = guess |> Seq.distinct 
+    if guess.Length = uniq.Count() then true
+    else false
+    
